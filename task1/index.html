@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link href="
+https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css
+" rel="stylesheet">
+        <style>
+            /* CSS reset */
+                *,
+                *::before,
+                *::after {
+                box-sizing: border-box;
+                }
+            body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+                margin:0;
+                padding:0;
+            }
+            
+            /* .contactus{
+                background-color: red;
+            } */
+            .container{
+                height: 100vh;
+                width:100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+            }
+            .contact-us{
+                border-bottom: 2px solid black;
+                box-sizing: border-box;
+                
+                width: 80%;
+                max-width: 1200px;
+                min-width: 900px;
+                height: 500px;
+                /* background-color: rgba(10,10,10,.1); */
+                display: grid;
+                align-items: center;
+                justify-items: center;
+                grid-template-columns: 1fr 1fr;
+                overflow-y: hidden;
+            }
+
+            .left{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+               
+            }
+            .left img{
+                
+                width: 100%;
+                /* height: 80px; */
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .right{
+                display: flex;
+                box-sizing: border-box;
+                padding: 2rem;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+                /* background-color: rgb(10,10,10,.2); */
+            }
+            .logo{
+                width: 80%;
+            }
+            .text1{
+                padding-top: 1rem;
+                font-size: 2.5rem;
+                font-weight: 900;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+            }
+            .text2{
+
+                font-size: 1.3rem;
+                font-weight: 600;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+            }
+
+            .form{
+                padding-top: 10px;
+                width: 90%;
+                color: rgb(50,50,50);
+            }
+            
+            input{
+                margin: .5rem 0px;
+                width: 100%;
+                font-size: 1.2rem;
+                font-weight: 300;
+                padding: .6rem;
+                padding-left: 1.4rem;
+                border: 2px solid rgb(100,100,100);
+            }
+            input:hover{
+                outline: none;
+            }
+            input:active{
+                outline: none;
+            }
+            
+            .selectHolder{
+                position: relative;;
+
+            }
+
+            .email{
+                position: relative;
+            }
+            #emailError{
+                position: absolute;
+                bottom: 25%;
+                right: 4%;
+                font-weight: 700;
+
+                font-size: 1rem;
+            }
+            .contact{
+                position: relative;
+            }
+            #contactError{
+                position: absolute;
+                bottom: 25%;
+                right: 4%;
+                font-weight: 700;
+                font-size: 1rem;
+            }
+
+            input[name="phone"]{
+                padding-left: 80px;
+                outline: none;
+            }
+            input[type="submit"]{
+                margin-top: 20px;
+                box-shadow: 1px 1px 1px rgba(0,0,0,.1);
+                background: linear-gradient(180deg, rgba(103,103,103,1) 0%, rgba(42,42,42,1) 100%);
+                color: white;
+                padding: .4rem;
+                border-radius: 5px;
+                font-size: 1rem;
+            }
+            input[type="submit"]:hover{
+                outline: none;
+                box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+            }
+            input:active{
+                outline: none; 
+            }
+            
+            select[name="phonecode"]{
+                background-color: transparent;
+                position: absolute;
+                color: rgb(50,50,50);
+                top: 30%;
+                left: 20px;
+                font-size: 1.2rem;
+                border: 0px;
+                
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+            }
+            select[name="phonecode"]:hover{
+                color: rgb(100,100,100);
+                outline: none;
+               
+            }
+            select[name="phonecode"]:active{
+                outline: none;
+            }
+            .error{
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: rgb(217, 63, 63);
+                font-size: .8rem;
+            }
+            .hide{
+                display: none;
+            }
+            #genericError{
+                position: absolute;
+            }
+            .shake {
+              
+                animation: myshake .5s;
+                transform-origin: left;
+
+
+            }
+            @keyframes myshake {
+            0% { transform: translate(0px,0px); }
+            50% {transform: translate(10px,0px); }
+            100% { transform: translate(0px,0px); }
+            }
+
+            @media screen and (max-width: 900px) {
+                
+                .container{
+                width:100%;
+                
+            }
+
+                .contact-us{
+                grid-template-columns:  1fr;
+                grid-template-rows:  1fr 1.5fr;
+                width: 70%;
+                min-width: 400px;
+                /* max-width: 1200px;
+                min-width: 900px; */
+                height: auto;
+            }
+            
+            .left img{
+                width: 60%;
+                /* height: 80px; */
+                object-fit: cover;
+                object-position: center;
+            }
+
+
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <section class="contact-us">
+                <div class="left">
+                <img src="./crop.jpg"/>
+                </div>
+
+            <div class="right">
+                <img class="logo" src="logo.png" />
+                <span class="text1"> Get a FREE </span>
+                <span class="text2"> consultation with an expert </span>
+                <div class="form"> 
+                    <form onsubmit="event.preventDefault();" novalidate  autocomplete="on">
+                       <div class="email">
+                           <input id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" placeholder="Enter your email" required name="email" />
+                        <span class="hide  error" id="emailError">
+                            Required
+                        </span>
+                        </div>
+                       <div class="selectHolder contact">
+                        <select id="phonecode" name="phonecode" >
+                            <option value="+91">+91</option>
+                            <option value="+92">+92</option>
+                            <option value="+93">+93</option>
+                            <option value="+94">+94</option>
+                        </select>
+                        <span class="hide  error" id="contactError">
+                            Required
+                        </span>
+                           <input id="contact" maxlength="10" minlength="10" placeholder="Enter your mobile" pattern="[0-9]{10}" required type="tel"  name="phone" >
+                        </input>    
+
+                        </div>
+                        <span id="genericError" class=" error "></span>
+                        <input type="submit" value="TALK TO US"> </input>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+        
+
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script >
+
+            const form = document.querySelector("form");
+            const email = document.getElementById("email");
+            const emailError = document.getElementById("emailError");
+            const contactNo = document.getElementById("contact");
+            const contactError = document.getElementById("contactError");
+            const phonecode = document.getElementById("phonecode");
+            const genericError = document.getElementById("genericError");
+            
+
+            const phoneTextMsg="You have entered an invalid Mobile number";
+            const emailTextMsg="You have entered an invalid email address";
+            
+          
+
+            function hideEmailError(){
+                emailError.classList.add("hide")
+            }
+            
+            function showEmailError(){
+                emailError.classList.remove("hide")
+                
+            }
+            function showContactError(){
+                contactError.classList.remove("hide")
+
+                
+            }
+            function hideContactError(){
+            contactError.classList.add("hide");
+            }
+           
+            
+            function showGenericError(){
+                genericError.classList.remove("hide");
+            }
+            function hideGenericError(){
+                genericError.classList.add("hide");
+            }
+            function setGenericErrorContent(text){
+                genericError.innerText=text;
+            }
+
+            function addShake(){
+               
+                genericError.classList.add("shake");
+            }
+            function removeShake(){
+                genericError.classList.remove("shake");
+            }
+
+            let err=0;
+            form.addEventListener("submit", (event) => {
+               err=0;
+            event.preventDefault();
+                hideContactError();
+                hideEmailError();
+                hideGenericError();
+                if(email.validity.valueMissing){
+                    err=1;
+                    showEmailError();  
+                }
+                if(contactNo.validity.valueMissing){
+                    err=1;
+                    showContactError();
+                }
+                console.log(email.validity);
+                if(err==1){
+                addShake();
+                setTimeout(()=>{removeShake()},.5)
+                return false;
+            }
+                if(contactNo.validity.tooLong||contactNo.validity.tooShort||!contactNo.validity.valid){
+                    setGenericErrorContent(phoneTextMsg);
+                    showGenericError() ;
+                    err=1;
+                }
+                if(!email.validity.valid){
+                    setGenericErrorContent(emailTextMsg);
+                    showGenericError() ;
+                    err=1;
+                }
+            if(err==1){
+                addShake();
+                setTimeout(()=>{removeShake()},600)
+                return false;
+            }
+
+            submitWithDetails(email.value,contactNo.value);
+            
+            });
+
+            function submitWithDetails(mailid,no){
+
+                sessionStorage.setItem("contactInfo",JSON.stringify({email:mailid,contactNo:phonecode.value+no}));
+                location.assign("/contact-complete.html");
+            }
+
+
+
+         
+        </script>
+    </body>
+</html>

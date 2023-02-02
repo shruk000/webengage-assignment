@@ -1,0 +1,1 @@
+Can be opened with a simple live server, from vscode

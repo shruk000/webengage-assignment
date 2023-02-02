@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+    <style>
+        li{
+            margin-left: 10px;
+            padding: 2px;
+        }
+        ul{ 
+            padding: 10px;
+        }
+        
+    </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <section style="background-color: rgba(215,215,215,.5);">
+            <h1 style="background-color: rgba(235,235,235,1);">
+                Nunjuck Template starts below..
+            </h1>
+            <code id="renderString">
+
+
+
+                bulletPoint 1:  If Id is even print its respective name, username, email else print "I'm Odd"
+                <ul>
+                   {% for item in data %}
+                   
+                    {% if item.id%2 %}
+                        <li>Id is ODD</li>   
+                    {% else %}
+                        <li><div>
+
+                        Name: {{ item.name }}
+                        <br>
+                        username: {{ item.username }}
+                        <br>
+                        email: {{ item.email }}
+                        <br>
+
+                        </div>
+                    </li>   
+                    {% endif %}
+                   {% endfor %}
+                </ul>
+
+
+
+
+                bulletPoint 2:  From the shared sample data of array JSON, based on all id values get its respective
+                address [keys and values] and print them
+                <ul>
+                   {% for item in data %}
+                        <li>
+                            for id : {{item.id}}
+                            <ul>
+                                
+                                {% for key, value in item.address %}
+                                <li>
+                                    {{ key }} : {{ value }}
+                                </li>   
+                                    {% endfor %}
+                            </ul>
+                        </li>
+                   {% endfor %}
+                </ul>
+
+
+
+                bulletPoint 3:  If any email ends with .biz print its name with email values.
+                <ul>
+                    {% set emailCheckRegex = r/.*\.biz$/g %}
+
+                    {% for item in data %}
+
+                    {% if emailCheckRegex.test(item.email) %}
+                        <li>
+
+                            <ul>
+                                
+                                <li>
+                                    {{ name }} : {{ item.name }}
+                                    {{ email }} : {{ item.email}}
+                                </li>   
+                                    
+                                </ul>
+                            </li>
+                            {% endif %}
+                   {% endfor %}
+                </ul>
+
+                
+                bulletPoint 4:  If city contains any of following "Aliyaview", "Howemouth", "Gwenborough" print its
+                respective cityname, zipcode, Geo with lat and lang values.
+                <br>
+                bulletPoint 5: Like this "The Zipcode and Geo of cityname {cityname} is: {zipcode} and
+                        {lat,lng} values"
+
+                <ul>
+
+                    {% macro checkInDomainDeep(item,value1,value2,value3) %}
+                        {% if item.address.city== value1 or item.address.city== value2 or item.address.city== value3 %}
+
+                                    
+                                    <li>The Zipcode and Geo of cityname {{item.address.city}} is {{item.address.zipcode}}
+                                    and  [Lat: {{item.address.geo.lat}} || Lng: {{item.address.geo.lng}}]    
+                                    </li>   
+
+                        {% endif %}
+                    {% endmacro %}
+
+                    {% macro checkInDomain(item) %}
+                        {{checkInDomainDeep(item,"Aliyaview","Howemouth","Gwenborough")}}
+                       
+                    {% endmacro %}
+
+
+
+                    <ul>
+                        {% for item in data %}
+
+                               
+                               {{checkInDomain(item)}}
+                        {% endfor %}
+                    </ul>
+                </ul>
+
+
+                bulletPoint 6: Print CatchPhrase which will contain max 15 letters.
+                May be It typo, was words..
+                Written Bellow Program for words, But can be replaced with changing macro
+                this answer written inside JS string, cause of LessThan symbol error in html
+                    
+                <!-- this was done in JS string cause of greater than symbol error -->
+
+                
+                
+
+            </code>
+        </section>
+        <!-- Answer in this section -->
+
+        <section style="background-color: rgba(235,235,235,.5);">
+            <h1 style="background-color: rgba(235,235,235,1);">
+                Output bellow for above Nunjucks template..
+            </h1>
+            <div id="outputString">
+                
+
+
+            </div>
+        </section>
+
+
+
+        <script src="https://mozilla.github.io/nunjucks/files/nunjucks.min.js">
+        </script>
+        <script >
+            // bullet six answer here..  
+            const bullet6Answer=`<ul>
+                            {% macro checkInLengthWords(item) %}
+                                {% set currentLength = item.company.catchPhrase | wordcount %}
+                               
+                                {% if currentLength <= 15 %}
+                                    <li>
+                                        Catch Phrase: {{item.company.catchPhrase}}
+                                    </li>
+                                {% endif %}
+                            {% endmacro %}
+
+                            {% macro checkInLengthLetters(item) %}
+                                {% set currentLength = item.company.catchPhrase | length %}
+
+                                {% if currentLength <= 15 %}
+                                    <li>
+
+                                        Catch Phrase: {{item.company.catchPhrase}}
+                                    </li>
+                                {% endif %}
+                            {% endmacro %}
+
+
+                            <ul>
+                                {% for item in data %}
+
+                                    
+                                    {{checkInLengthWords(item)}}
+                                {% endfor %}
+                            </ul>
+                            </ul>`
+
+
+            // ***********************************************************************
+            // Getting the Inner Html and Outputting the rendered content
+            function executeRender(jsonData){
+
+                nunjucks.configure({ autoescape: true });
+                let renderStringDom=document.querySelector("#renderString").innerHTML;
+                
+                console.log("renderString",renderStringDom);
+                renderStringDom=renderStringDom+bullet6Answer;
+                document.querySelector("#renderString").innerHTML=renderStringDom;
+                const outputStringContent=nunjucks.renderString(
+                    renderStringDom,
+                //    { username: 'James' }
+                    {data:jsonData}
+                   
+                   );
+                document.querySelector("#outputString").innerHTML=outputStringContent;
+            }
+            
+            // ***********************************************************************
+            // Fetching Content
+            fetch("https://jsonplaceholder.typicode.com/users").then(
+            data=>{
+                return data.json()
+            }
+            ).then(
+
+                jsonData=>{
+                    console.log(jsonData)
+                    executeRender(jsonData)
+                }
+
+            )
+
+        </script>
+
+    </body>
+</html>
